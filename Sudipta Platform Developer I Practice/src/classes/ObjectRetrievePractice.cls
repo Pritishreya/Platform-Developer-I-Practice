@@ -1,4 +1,6 @@
 public with sharing class ObjectRetrievePractice {
+    public String selectedObject{get;set;}
+    
     public List<SelectOption> getAllObjNames(){
         //Get all Object names
 		List<Schema.SObjectType> gd = Schema.getGlobalDescribe().Values();
@@ -18,8 +20,14 @@ public with sharing class ObjectRetrievePractice {
         options.add(new SelectOption('--None','--None--'));
         
         for(Schema.SObjectType f : gd){
-            options.add(new SelectOption(f.getDescribe().getName(),f.getDescribe().getName()));
+            if(f.getDescribe().getName().contains('__c'))
+                options.add(new SelectOption(f.getDescribe().getName(),f.getDescribe().getName()));
         }
+        return options;
+    }
+    
+    public List<SelectOption> getAllFieldNames(){
+        List<SelectOption> options = new List<SelectOption>();
         return options;
     }
 }

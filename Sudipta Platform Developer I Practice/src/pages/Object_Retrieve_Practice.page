@@ -16,5 +16,19 @@
                 </apex:selectList>
             </apex:outputLabel>
         </apex:pageBlock> 
+        
+        <apex:pageBlock title="Get Field Details for the selected object">
+            <apex:outputLabel value="Please select the object ">
+                <apex:selectList size="1" value="{!selectedObject}">
+                    <apex:selectoptions value="{!allObjNames}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+            <br/>
+            <apex:outputLabel value="Fields ">
+                <apex:selectList size="1">
+                    <apex:selectoptions value="{!allFieldNames}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+        </apex:pageBlock> 
     </apex:form>
 </apex:page>
