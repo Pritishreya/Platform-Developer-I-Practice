@@ -1,0 +1,20 @@
+<apex:page controller="ObjectRetrievePractice">
+
+    <apex:form >
+        <apex:pageBlock title="All Objects Fetched Dynamically">
+            <apex:outputLabel value="All Objects ">
+                <apex:selectList size="1">
+                    <apex:selectoptions value="{!allObjNames}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+        </apex:pageBlock> 
+        
+        <apex:pageBlock title="All Custom Objects Fetched Dynamically">
+            <apex:outputLabel value="All Custom Objects ">
+                <apex:selectList size="1">
+                    <apex:selectoptions value="{!allCustomObjNames}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+        </apex:pageBlock> 
+    </apex:form>
+</apex:page>
