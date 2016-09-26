@@ -25,19 +25,28 @@
             </apex:outputLabel>
         </apex:pageBlock> 
         
-        <apex:pageBlock title="Get Field Details for the selected object">
-            <apex:outputLabel value="Please select the object ">
-                <apex:selectList size="1" value="{!selectedObject}">
-                    <apex:selectoptions value="{!allObjNames}"></apex:selectoptions>
-                    <apex:actionSupport event="onchange" reRender="TheForm"/>
-                </apex:selectList>
-            </apex:outputLabel>
-            <br/>
-            <apex:outputLabel id="fieldDropDown" value="Fields ">
-                <apex:selectList size="1">
-                    <apex:selectoptions value="{!allFieldNames}"></apex:selectoptions>
-                </apex:selectList>
-            </apex:outputLabel>
-        </apex:pageBlock> 
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Select an Object" collapsible="false" columns="2">
+                 <apex:pageBlockSectionItem >
+                     <apex:outputLabel value="Select an object:"></apex:outputLabel>
+                     <apex:selectList value="{!objectName}" size="1" multiselect="false">
+                         <apex:selectOptions value="{!allObjNames}">
+                         </apex:selectOptions>
+                         <apex:actionSupport action="{!function}" event="onchange" reRender="fieldsPanel"/>  
+                     </apex:selectList>
+                 </apex:pageBlockSectionItem>
+                 
+                 <apex:pageBlockSectionItem >
+                 <apex:outputPanel id="fieldsPanel">
+                     <apex:outputLabel value="Select Fields:"> </apex:outputLabel>
+                     <apex:selectList value="{!fields}" multiselect="true" size="3" >
+                         <apex:selectOptions value="{!lsps}">
+                         
+                         </apex:selectOptions>
+                     </apex:selectList>
+                     </apex:outputPanel>
+                 </apex:pageBlockSectionItem> 
+             </apex:pageBlockSection>
+         </apex:pageBlock>
     </apex:form>
 </apex:page>
