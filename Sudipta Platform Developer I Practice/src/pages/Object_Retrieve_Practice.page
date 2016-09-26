@@ -1,6 +1,6 @@
 <apex:page controller="ObjectRetrievePractice">
 
-    <apex:form >
+    <apex:form id="TheForm">
         <apex:pageBlock title="All Objects Fetched Dynamically">
             <apex:outputLabel value="All Objects ">
                 <apex:selectList size="1">
@@ -17,11 +17,19 @@
             </apex:outputLabel>
         </apex:pageBlock> 
         
+        <apex:pageBlock title="All Fields from Account Object">
+            <apex:outputLabel value="All Account Fields ">
+                <apex:selectList size="1">
+                    <apex:selectoptions value="{!allAccountFields}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+        </apex:pageBlock> 
+        
         <apex:pageBlock title="Get Field Details for the selected object">
             <apex:outputLabel value="Please select the object ">
                 <apex:selectList size="1" value="{!selectedObject}">
                     <apex:selectoptions value="{!allObjNames}"></apex:selectoptions>
-                    <apex:actionSupport event="onchange" reRender="fieldDropDown"/>
+                    <apex:actionSupport event="onchange" reRender="TheForm"/>
                 </apex:selectList>
             </apex:outputLabel>
             <br/>
