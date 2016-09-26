@@ -21,10 +21,11 @@
             <apex:outputLabel value="Please select the object ">
                 <apex:selectList size="1" value="{!selectedObject}">
                     <apex:selectoptions value="{!allObjNames}"></apex:selectoptions>
+                    <apex:actionSupport event="onchange" reRender="fieldDropDown"/>
                 </apex:selectList>
             </apex:outputLabel>
             <br/>
-            <apex:outputLabel value="Fields ">
+            <apex:outputLabel id="fieldDropDown" value="Fields ">
                 <apex:selectList size="1">
                     <apex:selectoptions value="{!allFieldNames}"></apex:selectoptions>
                 </apex:selectList>

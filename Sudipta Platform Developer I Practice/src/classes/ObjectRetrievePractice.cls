@@ -1,5 +1,6 @@
 public with sharing class ObjectRetrievePractice {
     public String selectedObject{get;set;}
+    public List<SelectOption> allFieldNames{get;set;}
     
     public List<SelectOption> getAllObjNames(){
         //Get all Object names
@@ -27,7 +28,17 @@ public with sharing class ObjectRetrievePractice {
     }
     
     public List<SelectOption> getAllFieldNames(){
-        List<SelectOption> options = new List<SelectOption>();
-        return options;
+        allFieldNames = new List<SelectOption>();
+        System.Debug('-- selectedObject: ' + selectedObject);
+        if(selectedObject != null && selectedObject != ''){
+            Map<String, Schema.SObjectType> m1 = Schema.getGlobalDescribe() ;
+            SObjectType objToken1 = m1.get(selectedObject);
+            DescribeSObjectResult objDef1= objToken1.getDescribe();
+            Map<String, SObjectField> fieldmap = objDef1.fields.getmap();
+            for (String fName1:fieldmap.keySet()){
+                allFieldNames.add(new SelectOption(fieldmap.get(fName1).getDescribe().getName(),fieldmap.get(fName1).getDescribe().getName()));
+            }
+        }
+        return allFieldNames;
     }
 }
