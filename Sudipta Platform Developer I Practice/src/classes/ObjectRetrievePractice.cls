@@ -1,8 +1,7 @@
 public with sharing class ObjectRetrievePractice {
-    public String selectedObject{get;set;}
-    public List<SelectOption> allFieldNames{get;set;}
-    public String objectName { get; set; }    
-    public set<string> flds{get;set;}
+    public String objectName { get; set; } 
+    public list<SelectOption> lsps{get;set;}  
+    public String fields { get; set; }
     
     //Method to fetch all objects present in the org
     public List<SelectOption> getAllObjNames(){
@@ -44,24 +43,6 @@ public with sharing class ObjectRetrievePractice {
         }
         return options;
     }
-    
-    public List<SelectOption> getAllFieldNames(){
-        allFieldNames = new List<SelectOption>();
-        System.Debug('-- selectedObject: ' + selectedObject);
-        if(selectedObject != null && selectedObject != '--None--'){
-            Map<String, Schema.SObjectType> m1 = Schema.getGlobalDescribe() ;
-            SObjectType objToken1 = m1.get(selectedObject);
-            DescribeSObjectResult objDef1= objToken1.getDescribe();
-            Map<String, SObjectField> fieldmap = objDef1.fields.getmap();
-            for (String fName1:fieldmap.keySet()){
-                allFieldNames.add(new SelectOption(fieldmap.get(fName1).getDescribe().getName(),fieldmap.get(fName1).getDescribe().getName()));
-            }
-        }
-        return allFieldNames;
-    }
-    
-    public String fields { get; set; }
-    public list<SelectOption> lsps{get;set;}
       
     public void function() {
         Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
@@ -74,20 +55,6 @@ public with sharing class ObjectRetrievePractice {
 	            System.Debug('-- Field Name: ' + mpConField.get(token).getDescribe().getName() + '  Field Label: ' + mpConField.get(token).getDescribe().getLabel());
 	            lsps.add(new SelectOption(mpConField.get(token).getDescribe().getLabel(),mpConField.get(token).getDescribe().getLabel()));
             }
-            /*
-            for (String fName1:mpConField.keySet()){
-                allFieldNames.add(new SelectOption(mpConField.get(fName1).getDescribe().getName(),mpConField.get(fName1).getDescribe().getName()));
-            }
-            */
-            /*
-            flds=mpConField.keySet();
-                                
-            for(string name:flds){
-                Schema.DescribeFieldResult fldResult=mpConField.get(name).getDescribe();
-                lsps.add(new SelectOption(fldResult.getName(),fldResult.getName()));
-                lsps.sort();                    
-            }
-            */
         }        
     }
 }
