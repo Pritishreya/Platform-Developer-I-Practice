@@ -8,6 +8,7 @@ public with sharing class ObjectRetrievePractice {
     public List<SelectOption> getAllObjNames(){
         //Get all Object names
 		List<Schema.SObjectType> gd = Schema.getGlobalDescribe().Values();
+		
 		List<SelectOption> options = new List<SelectOption>();
 		options.add(new SelectOption('--None','--None--'));
 		
@@ -21,6 +22,7 @@ public with sharing class ObjectRetrievePractice {
 	public List<SelectOption> getAllCustomObjNames(){
         //Get all Object names
         List<Schema.SObjectType> gd = Schema.getGlobalDescribe().Values();
+        
         List<SelectOption> options = new List<SelectOption>();
         options.add(new SelectOption('--None','--None--'));
         
@@ -34,10 +36,10 @@ public with sharing class ObjectRetrievePractice {
     //Method to fetch Account fields dynamically
     public List<SelectOption> getAllAccountFields(){
         List<SelectOption> options = new List<SelectOption>();
-        Schema.DescribeSObjectResult[] results = Schema.describeSObjects(new String[]{'Account'});
+        
         Map<String, Schema.SObjectField> fm = Schema.SObjectType.Account.fields.getMap();
+        
         for(String token : fm.keyset()){
-            System.Debug('-- Field Name: ' + fm.get(token).getDescribe().getName() + '  Field Label: ' + fm.get(token).getDescribe().getLabel());
             options.add(new SelectOption(fm.get(token).getDescribe().getLabel(),fm.get(token).getDescribe().getLabel()));
         }
         return options;
