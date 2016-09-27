@@ -43,8 +43,9 @@ public with sharing class ObjectRetrievePractice {
         }
         return options;
     }
-      
-    public void function() {
+    
+    //Method to fetch fields dynamically from the selected objects  
+    public void fetchFields() {
         Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
         lsps = new List<SelectOption>();
         
@@ -52,7 +53,6 @@ public with sharing class ObjectRetrievePractice {
             Map<string,Schema.SObjectField> mpConField=schemaMap.get(objectName).getDescribe().fields.getMap();
             
             for(String token : mpConField.keyset()){
-	            System.Debug('-- Field Name: ' + mpConField.get(token).getDescribe().getName() + '  Field Label: ' + mpConField.get(token).getDescribe().getLabel());
 	            lsps.add(new SelectOption(mpConField.get(token).getDescribe().getLabel(),mpConField.get(token).getDescribe().getLabel()));
             }
         }        

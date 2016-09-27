@@ -32,7 +32,7 @@
                      <apex:selectList value="{!objectName}" size="1" multiselect="false">
                          <apex:selectOptions value="{!allObjNames}">
                          </apex:selectOptions>
-                         <apex:actionSupport action="{!function}" event="onchange" reRender="fieldsPanel"/>  
+                         <apex:actionSupport action="{!fetchFields}" event="onchange" reRender="fieldsPanel"/>  
                      </apex:selectList>
                  </apex:pageBlockSectionItem>
                  
