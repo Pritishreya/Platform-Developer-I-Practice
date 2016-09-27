@@ -44,6 +44,21 @@ public with sharing class ObjectRetrievePractice {
         return options;
     }
     
+    //Method to fetch Required fields from Account object dynamically
+    public List<SelectOption> getAllAccountRequiredFields(){
+        List<SelectOption> options = new List<SelectOption>();
+        
+        Map<String, Schema.SObjectField> fm = Schema.SObjectType.Account.fields.getMap();
+        
+        for(String token : fm.keyset()){
+            Schema.DescribeFieldResult describeResult = fm.get(token).getDescribe();
+            if(describeResult.isCreateable() && !describeResult.isNillable() && !describeResult.isDefaultedOnCreate()){
+                options.add(new SelectOption(describeResult.getLabel(),describeResult.getLabel()));
+            }
+        }
+        return options;
+    }
+    
     //Method to fetch fields dynamically from the selected objects  
     public void fetchFields() {
         Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();

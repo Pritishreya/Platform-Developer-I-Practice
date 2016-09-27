@@ -48,5 +48,13 @@
                  </apex:pageBlockSectionItem> 
              </apex:pageBlockSection>
          </apex:pageBlock>
+         
+         <apex:pageBlock title="Display only the required fields Account Object">
+            <apex:outputLabel value="All Required Fields from Account object ">
+                <apex:selectList size="1">
+                    <apex:selectoptions value="{!allAccountRequiredFields}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+        </apex:pageBlock> 
     </apex:form>
 </apex:page>
