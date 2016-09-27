@@ -56,5 +56,13 @@
                 </apex:selectList>
             </apex:outputLabel>
         </apex:pageBlock> 
+        
+        <apex:pageBlock title="Display Account's Child Objects">
+            <apex:outputLabel value="Child Objects from Account ">
+                <apex:selectList size="1">
+                    <apex:selectoptions value="{!allAccountChildObjects}"></apex:selectoptions>
+                </apex:selectList>
+            </apex:outputLabel>
+        </apex:pageBlock>
     </apex:form>
 </apex:page>

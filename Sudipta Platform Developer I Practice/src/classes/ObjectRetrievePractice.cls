@@ -59,6 +59,20 @@ public with sharing class ObjectRetrievePractice {
         return options;
     }
     
+    //Method to fetch Child Relationship from Account object dynamically
+    public List<SelectOption> getAllAccountChildObjects(){
+        List<SelectOption> options = new List<SelectOption>();
+        
+        Schema.DescribeSObjectResult describeResult = Account.SObjectType.getDescribe();
+        List<Schema.ChildRelationship> lstchildrelationships = describeResult.getChildRelationships();
+        
+        for(Schema.ChildRelationship relname:lstchildrelationships){
+             options.add(new SelectOption(relname.getChildSObject().getDescribe().getLabel(),relname.getChildSObject().getDescribe().getLabel()));
+        }
+        
+        return options;
+    }
+    
     //Method to fetch fields dynamically from the selected objects  
     public void fetchFields() {
         Map<String, Schema.SObjectType> schemaMap = Schema.getGlobalDescribe();
