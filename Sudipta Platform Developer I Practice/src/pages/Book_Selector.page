@@ -1,6 +1,7 @@
 <apex:page controller="BookSelector">
     <apex:form >
-        <apex:pageBlock >
+        <apex:outputLabel rendered="{IF(hasAccess==false,true,false)}" value="{!errorMessage}"/> 
+        <apex:pageBlock rendered="{IF(hasAccess==true,true,false)}">
             <apex:pageBlockSection title="Book Selector" collapsible="true" columns="1">
                 <apex:pageBlockSectionItem >
                     <apex:outputLabel value="Select the book here: "/>
