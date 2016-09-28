@@ -1,0 +1,14 @@
+<apex:page controller="BookSelector">
+    <apex:form >
+        <apex:pageBlock >
+            <apex:pageBlockSection title="Book Selector" collapsible="true" columns="1">
+                <apex:pageBlockSectionItem >
+                    <apex:outputLabel value="Select the book here: "/>
+                    <apex:selectList value="{!selectedBook}" size="1" multiselect="false">
+                        <apex:selectOptions value="{!allBooks}"/>
+                    </apex:selectList>
+                </apex:pageBlockSectionItem>
+            </apex:pageBlockSection>
+        </apex:pageBlock>
+    </apex:form>
+</apex:page>
