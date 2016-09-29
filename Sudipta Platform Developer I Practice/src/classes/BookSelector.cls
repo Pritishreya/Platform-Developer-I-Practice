@@ -15,6 +15,18 @@ public with sharing class BookSelector {
     
     public List<SelectOption> getAllBooks(){
         List<SelectOption> options = new List<SelectOption>();
+        if(hasAccess){
+            List<sudipta__Book__c> allBooks = [SELECT 
+                                                    ID,
+                                                    NAME,
+                                                    sudipta__Author__c,
+                                                    sudipta__Price__c,
+                                                    sudipta__Type__c
+                                               FROM sudipta__Book__c ];
+            for(sudipta__Book__c singleBook : allBooks){
+                options.add(new SelectOption(singleBook.Name, singleBook.Name));
+            }
+        }
         return options;
     }
 }
