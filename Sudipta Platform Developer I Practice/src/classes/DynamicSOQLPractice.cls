@@ -9,6 +9,8 @@ public with sharing class DynamicSOQLPractice {
         }
         
         System.Debug('-- FIELDS: ' + allFields);
+        //Remove the last ',' from allFields
+        allFields = allFields.subString(0,allFields.length()-1);
         String queryString = 'SELECT ' + allFields + ' FROM ACCOUNT';
         if(!String.isBlank(queryString)){
             allAccounts = Database.query(queryString);
