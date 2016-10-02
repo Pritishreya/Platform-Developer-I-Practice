@@ -1,13 +1,13 @@
 public with sharing class DynamicSOQLPractice {
     public static void getAccountFieldsDynamically(){
-        String fields = '';
+        String allFields = '';
         List<Account> allAccounts;
         
         Map<String, Schema.SObjectField> fieldMap = Schema.SObjectType.Account.fields.getMap();
         for(Schema.SObjectField singleField : fieldMap.values()){
-            fields = fields + singleField.getDescribe();
+            allFields = allFields + ',' + singleField.getDescribe().getName();
         }
         
-        System.Debug('-- FIELDS: ' + fields);
+        System.Debug('-- FIELDS: ' + allFields);
     }
 }
