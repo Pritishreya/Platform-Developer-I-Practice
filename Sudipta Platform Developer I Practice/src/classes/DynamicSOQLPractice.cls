@@ -9,5 +9,13 @@ public with sharing class DynamicSOQLPractice {
         }
         
         System.Debug('-- FIELDS: ' + allFields);
+        String queryString = 'SELECT ' + allFields + ' FROM ACCOUNT';
+        if(!String.isBlank(queryString)){
+            allAccounts = Database.query(queryString);
+        }
+        
+        if(allAccounts.size() > 0){
+            System.Debug('--ACCOUNT FETCHED: ' + allAccounts.size());
+        }
     }
 }
