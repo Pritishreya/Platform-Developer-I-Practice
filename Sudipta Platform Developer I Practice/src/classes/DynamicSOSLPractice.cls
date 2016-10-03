@@ -1,6 +1,6 @@
 public with sharing class DynamicSOSLPractice {
     /*
-        This method will prepare SOSL statement to search for the keyworf in all the fields for the objects
+        This method will prepare SOSL statement to search for the keyword in all the fields for the objects
         Account, Lead, Contact, sudipta__Book__c
     */
     public static void testDynamicSOSL(){
@@ -30,8 +30,7 @@ public with sharing class DynamicSOSLPractice {
         
         //Iterate the sosl result
         for(List<sObject> sObjectSearchResult : searchResult){
-            for(sObject singleObject : sObjectSearchResult){
-            } 
+            //Print the values 
         }
         
     }
