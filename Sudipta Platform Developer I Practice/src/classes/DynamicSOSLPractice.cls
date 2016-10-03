@@ -22,7 +22,7 @@ public with sharing class DynamicSOSLPractice {
         soslString = soslString.subString(0,soslString.length()-1);
         System.Debug('-- soslString: ' + soslString);
         
-        soslString += 'FIND\'*' + searchKeyword + '*\' IN ALL FIELDS RETURNING ' + soslString;
+        soslString = 'FIND \'*' + searchKeyword + '*\' IN ALL FIELDS RETURNING ' + soslString;
         System.DEbug('-- Final SOSLQueryString: ' + soslString);
         
     }
