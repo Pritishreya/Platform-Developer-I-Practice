@@ -18,10 +18,8 @@ public with sharing class DynamicSOQLPractice {
             allAccounts = Database.query(queryString);
         }
         
-        /*
-        if(allAccounts.size() > 0){
-            System.Debug('--ACCOUNT FETCHED: ' + allAccounts.size());
+        if(allAccounts != null && !allAccounts.isEmpty()){
+            System.Debug('-- ACCOUNT FETCHED: ' + allAccounts.size());
         }
-        */
     }
 }
