@@ -23,7 +23,16 @@ public with sharing class DynamicSOSLPractice {
         System.Debug('-- soslString: ' + soslString);
         
         soslString = 'FIND \'*' + searchKeyword + '*\' IN ALL FIELDS RETURNING ' + soslString;
-        System.DEbug('-- Final SOSLQueryString: ' + soslString);
+        System.Debug('-- Final SOSLQueryString: ' + soslString);
+        
+        //Execute the sosl query
+        List<List<sObject>> searchResult = search.query(soslString);
+        
+        //Iterate the sosl result
+        for(List<sObject> sObjectSearchResult : searchResult){
+            for(sObject singleObject : sObjectSearchResult){
+            } 
+        }
         
     }
 }
