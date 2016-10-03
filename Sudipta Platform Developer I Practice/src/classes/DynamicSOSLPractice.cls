@@ -30,7 +30,16 @@ public with sharing class DynamicSOSLPractice {
         
         //Iterate the sosl result
         for(List<sObject> sObjectSearchResult : searchResult){
-            //Print the values 
+            if(sObjectSearchResult != null && !sObjectSearchResult.isEmpty()){
+                System.Debug('RESULT IS FROM OBJECT: ' + sObjectSearchResult.get(0).getSobjectType().getDescribe().getName());
+	            for(sObject singleObject : sObjectSearchResult){
+	                Map<String, Object> fieldsToValue = singleObject.getPopulatedFieldsAsMap();
+	                for(String fieldName : fieldsToValue.keySet()){
+	                    System.Debug('-- Field Name: ' + fieldName + ' Value: ' + fieldsToValue.get(fieldName));
+	                }
+	            }    
+            }
+            
         }
         
     }
