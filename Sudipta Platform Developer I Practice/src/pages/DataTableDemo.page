@@ -1,2 +1,5 @@
 <apex:page controller="DataTableController" showheader="false" sidebar="false" standardStylesheets="false">
+    <!-- Load the required JavaScript and CSS file -->
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
 </apex:page>
