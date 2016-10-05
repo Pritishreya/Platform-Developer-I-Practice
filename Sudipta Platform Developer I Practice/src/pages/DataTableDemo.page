@@ -1,0 +1,2 @@
+<apex:page controller="DataTableController" showheader="false" sidebar="false" standardStylesheets="false">
+</apex:page>
