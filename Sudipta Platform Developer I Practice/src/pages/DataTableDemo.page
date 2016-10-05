@@ -1,9 +1,49 @@
 <apex:page controller="DataTableController" showheader="false" sidebar="false" standardStylesheets="false">
     <!-- Load the required JavaScript and CSS file -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"/>
+    <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
     
     <script>
+        /**
+         * Initializes remote table
+         * targetId, sourceObject, columns
+         *
+         * @param  {[type]} config [description]
+         * @return {[type]}        [description]
+         */
+        var initRemoteTable = function(config) {
+            // configure columns
+            var tableColumns = [{
+                title       : 'Both',
+                data        : 'AssetsearchResultsId',
+                orderable   : false,
+                sortable    : false,
+                width       : '3%'
+            }].concat(config.columns);
+            
+            // init table
+            jQuery('#searchResult').on('draw.dt', function () {
+                alert('-on draw.dt method');
+                //jQuery('#searchResult tbody tr').addClass('dataRow');
+            }).dataTable({
+                "bPaginate"     : true,
+                "bLengthChange" : true,
+                "bFilter"       : true,
+                "bSort"         : true,
+                "bInfo"         : false,
+                "bAutoWidth"    : false,
+                "columns"       : tableColumns,
+                "ajax" : function(data, callback, settings) {
+                    alert('Inside ajax function');
+                },
+                processing  : false,
+                serverSide  : false,
+                order       : [[1, 'asc']],
+                searchDelay : 1000
+            });
+        }
+        
         jQuery.noConflict();
         jQuery(document).ready(function() {
             // prepare grid config
@@ -13,8 +53,17 @@
                 //loaderId         : '{!$Component.parentForm.status}',
                 //ajaxFunction     : CCT_SearchResultsController_New.getData,
             };
-            //initRemoteTable(config);
+            initRemoteTable(config);
             //jQuery("#searchResult_length").before("<div class=\"dataTables_length\" id=\"resultsCount\"></div>");
         });
     </script>
+    
+    <apex:form id="parentForm" styleClass="top_parent">
+        <!-- data area -->
+        <apex:outputPanel layout="block" >            
+            <apex:outputPanel layout="none" >
+                <table id="searchResult" class="list"></table>
+            </apex:outputPanel>
+        </apex:outputPanel>
+    </apex:form>
 </apex:page>
