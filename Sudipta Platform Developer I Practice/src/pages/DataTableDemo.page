@@ -2,4 +2,19 @@
     <!-- Load the required JavaScript and CSS file -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
+    
+    <script>
+        jQuery.noConflict();
+        jQuery(document).ready(function() {
+            // prepare grid config
+            var config = {
+                columns          : {!columns},
+                customParams     : applyCustomFilters,
+                //loaderId         : '{!$Component.parentForm.status}',
+                //ajaxFunction     : CCT_SearchResultsController_New.getData,
+            };
+            //initRemoteTable(config);
+            //jQuery("#searchResult_length").before("<div class=\"dataTables_length\" id=\"resultsCount\"></div>");
+        });
+    </script>
 </apex:page>
