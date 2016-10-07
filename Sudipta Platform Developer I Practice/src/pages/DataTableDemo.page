@@ -1,7 +1,7 @@
 <apex:page controller="DataTableController" showheader="false" sidebar="false" standardStylesheets="false">
     <!-- Load the required JavaScript and CSS file -->
+    <script type="text/javascript" charset="utf8" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"/>
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"/>
-    <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.2.min.js"/>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.12/css/jquery.dataTables.min.css"/>
     
     <script>
@@ -19,13 +19,18 @@
                 data        : 'AssetsearchResultsId',
                 orderable   : false,
                 sortable    : false,
-                width       : '3%'
+                width       : '3%',,
+                render    : function(data, type, full, meta) {
+                    return '<div class="updateCaseAction" onmouseover="this.style=' + '\'cursor:pointer\'' + ';" onclick="updateCaseControllerAction(\'' + 'Both' + '\',\'' + '{!$CurrentPage.Parameters.caseid}' + '\',\'' + full['Contact.Id'] + '\',\'' + full['Asset.Id'] + '\');"></div>';
+                }
             }].concat(config.columns);
             
             // init table
-            jQuery('#searchResult').on('draw.dt', function () {
+            j$('#searchResult').on('processing.dt', function ( e, settings, processing ) {
+                 alert('-on processing.dt method');
+            }).on('draw.dt', function () {
                 alert('-on draw.dt method');
-                //jQuery('#searchResult tbody tr').addClass('dataRow');
+                j$('#searchResult tbody tr').addClass('dataRow');
             }).dataTable({
                 "bPaginate"     : true,
                 "bLengthChange" : true,
@@ -34,7 +39,7 @@
                 "bInfo"         : false,
                 "bAutoWidth"    : false,
                 "columns"       : tableColumns,
-                "ajax" : function(data, callback, settings) {
+                "ajax"          : function(data, callback, settings) {
                     alert('Inside ajax function');
                 },
                 processing  : false,
@@ -42,14 +47,19 @@
                 order       : [[1, 'asc']],
                 searchDelay : 1000
             });
-        }
+            
+            // add css class to header row
+            j$('#searchResult thead tr').addClass('headerRow');
+
+            j$('#searchResult').show();
+        };
         
-        jQuery.noConflict();
-        jQuery(document).ready(function() {
+        var j$ = jQuery.noConflict();
+        j$(document).ready(function() {
             // prepare grid config
             var config = {
                 columns          : {!columns},
-                customParams     : applyCustomFilters,
+                //customParams     : applyCustomFilters,
                 //loaderId         : '{!$Component.parentForm.status}',
                 //ajaxFunction     : CCT_SearchResultsController_New.getData,
             };
